@@ -4,6 +4,10 @@ body{
         sans-serif;
 
 }
+header{
+    border-radius: 1px solid;
+    padding: 30PX  0 30px;
+}
 .weather-app{
     background-color: blanchedalmond;
     max-width: ;600px;
@@ -13,7 +17,7 @@ body{
     padding: 30px;
 }
 .search-form-input{
-    background-color: #f9f7fe;
+    background-color: #d0cbd8;
     border: none;
     border-radius: 6px;
     width: 80%;
@@ -21,11 +25,18 @@ body{
     padding: 15px 20px;
 }
 .search-form-button{
-    background: #885df1;
+    background: #9f86df;
     padding: 15px;
     font-size: 16px;
     border: none;
     margin-left: 5px;
     border-radius: 6px;
     color: #f9f7fe;
+}
+footer{
+    border-top: 1px solid #f9f7fe;
+    padding: 30px 0 0 0;
+    text-align: center;
+    font-size: 13px;
+    color: rgba (0 0 0 6);
 }
