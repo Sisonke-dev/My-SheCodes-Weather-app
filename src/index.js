@@ -1,32 +1,37 @@
-
-function searchCity(city){
-    let apiKey= "84t5f0f08be2e1a78e0fo88efb0b43e5";
-let apiUrl= `https://api.shecodes.io/weather/v1/current?query=${city}&key=${apiKey}&units=metric`;
-
+function search(event) {
+  event.preventDefault();
+  let searchInputElement = document.querySelector("#search-input");
+  let cityElement = document.querySelector("#current-city");
+  cityElement.innerHTML = searchInputElement.value;
+  let city = searchInputElement.value;
+  getWeather(city);
 }
-function search (Event) {
-    Event.preventDefault();
 
-let searchFormElement= document.querySelector("#search-form");
-let cityElement = document.querySelector("#weather-app-city");
-  cityElement.textContent= searchFormElement.Value;
-searchCity(searchInput.value);
+function getWeather(city) {
+  let apiKey = "84t5f0f08be2e1a78e0fo88efb0b43e5";
+  let apiUrl = `https://api.shecodes.io/weather/v1/current?query=${city}&key=${apiKey}&unit=metric`;
+  axios.get(apiUrl).then(displayWeather).catch(handleError);
 }
-axios.get(apiUrl).then(displayTemperature);
+
+function displayWeather(response) {
+  let temperatureElement = document.querySelector("#temperature");
+  let temperature = response.data.temperature.current;
+  let descriptionElement = document.querySelector("#description");
+  let humidityElement = document.querySelector("#humidity");
+  let windSpeedElement = document.querySelector("#wind-speed");
+
+  document.querySelector("#current-date").innerHTML = formatDate(new Date());
+  document.querySelector("#current-city").innerHTML = response.data.city;
+  descriptionElement.innerHTML = response.data.condition.description;
+  humidityElement.innerHTML = `${response.data.humidity}%`;
+  windSpeedElement.innerHTML = `${response.data.wind.speed} km/h`;
+  temperatureElement.innerHTML = Math.round(temperature);
 }
 
 function formatDate(date) {
-  let minutes = date.getMinutes();
-  let hours = date.getHours();
+  let minutes = date.getMinutes().toString().padStart(2, "0");
+  let hours = date.getHours().toString().padStart(2, "0");
   let day = date.getDay();
-
-  if (minutes < 10) {
-    minutes = `0${minutes}`;
-  }
-
-  if (hours < 10) {
-    hours = `0${hours}`;
-  }
 
   let days = [
     "Sunday",
@@ -35,17 +40,16 @@ function formatDate(date) {
     "Wednesday",
     "Thursday",
     "Friday",
-    "Saturday"
+    "Saturday",
   ];
 
   let formattedDay = days[day];
   return `${formattedDay} ${hours}:${minutes}`;
 }
 
+function handleError(error) {
+  console.error("Error fetching weather data:", error);
+}
+
 let searchForm = document.querySelector("#search-form");
 searchForm.addEventListener("submit", search);
-
-let currentDateELement = document.querySelector("#current-date");
-let currentDate = new Date();
-
-currentDateELement.innerHTML = formatDate(currentDate);
