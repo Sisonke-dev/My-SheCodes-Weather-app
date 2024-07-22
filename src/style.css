@@ -1,5 +1,5 @@
 body{ 
-    background-color: #f9f7fe;
+    background-color: #4b67a3a6;
     font-family: "Roboto",
         sans-serif;
 
@@ -10,7 +10,7 @@ header{
     border
 }
 .weather-app{
-    background-color: blanchedalmond;
+    background-color:light purple;
     max-width: ;600px;
     margin: 45px auto;
     box-shadow: 0 30px 50px rgba (65,50,100,0.08);
@@ -21,7 +21,7 @@ header{
     background-color: #d0cbd8;
     border: none;
     border-radius: 6px;
-    width: 80%;
+    width:max-content;
     font-size: 16px;
     padding: 15px 20px;
 }
